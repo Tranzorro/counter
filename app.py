@@ -3,16 +3,18 @@ from flask.wrappers import Response
 from werkzeug.utils import redirect
 app = Flask(__name__)
 app.secret_key = 'keep it secret, keep it safe'
-counter = 1
+
 @app.route('/')
 def index():
-    global counter
-    counter += 1
-    session["counter"] = counter
+    if "counter" not in session:
+        session["counter"] = 0
+    else:
+        session["counter"] += 1
     return render_template("index.html")
 @app.route('/clear', methods=['GET', 'POST'])
 def clear_count():
-    session.pop("counter")
+    # session.pop("counter")
+    session.clear()
     return redirect("/")
 if __name__ == "__main__":
     app.run(debug=True)
