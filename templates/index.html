@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    counter {{ session["counter"] }}
+    <form action="/clear" method= "post">
+        <button name="clear" type="submit"> clear views</button>
+    </form>
     
 </body>
 </html>
