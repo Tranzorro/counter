@@ -16,5 +16,9 @@ def clear_count():
     # session.pop("counter")
     session.clear()
     return redirect("/")
+@app.route('/add', methods=['GET', 'POST'])
+def add_count():
+    session["counter"] += 3
+    return redirect("/")
 if __name__ == "__main__":
     app.run(debug=True)
